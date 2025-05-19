@@ -1,0 +1,24 @@
+{
+  "name": "@iaskshahram/strapi-provider-upload-uploadthing",
+  "version": "0.0.1",
+  "description": "UploadThing custom provider to be used with Strapi CMS",
+  "keywords": [
+    "uploadthing",
+    "strapi"
+  ],
+  "homepage": "https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing#readme",
+  "bugs": {
+    "url": "https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing.git"
+  },
+  "license": "ISC",
+  "author": "Ahmed Shahram",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
