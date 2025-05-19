@@ -4,7 +4,9 @@
   "description": "UploadThing custom provider to be used with Strapi CMS",
   "keywords": [
     "uploadthing",
-    "strapi"
+    "strapi",
+    "strapi-provider",
+    "upload-provider"
   ],
   "homepage": "https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing#readme",
   "bugs": {
@@ -15,10 +17,49 @@
     "url": "git+https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing.git"
   },
   "license": "ISC",
-  "author": "Ahmed Shahram",
+  "author": {
+    "name": "Ahmed Shahram",
+    "email": "shahram.ask.546@gmail.com",
+    "url": "https://shahram.dev"
+  },
+  "maintainers": [
+    {
+      "name": "Ahmed Shahram",
+      "email": "shahram.ask.546@gmail.com",
+      "url": "https://shahram.dev"
+    }
+  ],
   "type": "module",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p tsconfig.build.json",
+    "clean": "rm -rf dist",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "uploadthing": "^7.7.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.4",
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^5.12.6"
   }
 }
