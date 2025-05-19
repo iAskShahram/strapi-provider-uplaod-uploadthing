@@ -248,7 +248,7 @@ This package is compatible with the following Node.js versions (as specified in 
 
 ### Contributing
 
-Contributions are welcome! Please feel free to submit issues and pull requests to the [GitHub repository](https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing).
+Contributions are welcome! Please feel free to submit issues and pull requests to the [GitHub repository](https://github.com/iAskShahram/strapi-provider-upload-uploadthing).
 
 ### License
 

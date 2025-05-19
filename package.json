@@ -8,13 +8,13 @@
     "strapi-provider",
     "upload-provider"
   ],
-  "homepage": "https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing#readme",
+  "homepage": "https://github.com/iAskShahram/strapi-provider-upload-uploadthing#readme",
   "bugs": {
-    "url": "https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing/issues"
+    "url": "https://github.com/iAskShahram/strapi-provider-upload-uploadthing/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iAskShahram/strapi-provider-uplaod-uploadthing.git"
+    "url": "git+https://github.com/iAskShahram/strapi-provider-upload-uploadthing.git"
   },
   "license": "ISC",
   "author": {
