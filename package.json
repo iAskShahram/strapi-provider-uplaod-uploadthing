@@ -43,8 +43,6 @@
     "build": "tsc -p tsconfig.build.json",
     "clean": "rm -rf dist",
     "dev": "tsc --watch",
-    "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix",
     "prebuild": "npm run clean",
     "prepublishOnly": "npm run build"
   },
