@@ -1,6 +1,6 @@
 {
   "name": "@iaskshahram/strapi-provider-upload-uploadthing",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "UploadThing custom provider to be used with Strapi CMS",
   "keywords": [
     "uploadthing",
