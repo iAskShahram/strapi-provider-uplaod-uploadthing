@@ -1,18 +1,5 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig",
-  "extends": "@tsconfig/node18/tsconfig.json",
-  "compilerOptions": {
-    "declaration": true,
-    "declarationMap": false,
-    "esModuleInterop": true,
-    "sourceMap": false,
-    "resolveJsonModule": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "skipLibCheck": true
-  },
+  "extends": "./base.json",
   "include": ["src"],
-  "exclude": ["node_modules/", "build/", "dist/", ".cache/", ".tmp/"]
+  "exclude": ["node_modules", "dist"]
 }
