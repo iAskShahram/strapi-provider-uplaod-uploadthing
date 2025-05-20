@@ -25,49 +25,85 @@ interface File {
   buffer?: Buffer;
 }
 
+interface StrapiUploadProviderMethods {
+  upload(file: File): Promise<void | null>;
+  uploadStream(file: File): Promise<void | null>;
+  delete(file: File): Promise<void | null>;
+}
+
 export default {
-  init: (providerOptions: ProviderOptions) => {
+  init: (providerOptions: ProviderOptions): StrapiUploadProviderMethods => {
     const utapi = new UTApi({
       token: providerOptions.token || process.env.UPLOADTHING_TOKEN,
     });
 
     return {
-      upload: async (file: File) => {
+      upload: async (file: File): Promise<void | null> => {
         try {
           if (!file.buffer) {
             throw new Error("No file buffer provided");
           }
 
-          const toUploadFile = new File([file.buffer], file.name, {
+          const toUploadFile = new globalThis.File([file.buffer], file.name, {
             type: file.mime,
           });
 
           const [uploadThingResponse] = await utapi.uploadFiles([toUploadFile]);
           if (!uploadThingResponse.data) {
-            file.url = "";
-            return file;
+            throw new Error("No uploadThingResponse data");
+          } else {
+            /**
+             ** uploadThingResponse.data.url && uploadThingResponse.data.appUrl are deprecated
+             */
+            file.url = uploadThingResponse.data.ufsUrl;
+            file.hash = uploadThingResponse.data.key;
           }
-
-          /**
-           ** uploadThingResponse.data.url && uploadThingResponse.data.appUrl are deprecated
-           */
-          file.url = uploadThingResponse.data.ufsUrl;
         } catch (error: unknown) {
           const errorMessage =
             error instanceof Error ? error.message : "Unknown error";
-          console.error(`🚀 ~ ${errorMessage}`);
+          console.error(`🚀 ~ upload error: ${errorMessage}`);
           return null;
         }
       },
 
-      delete: async (file: File) => {
+      uploadStream: async (file: File): Promise<void | null> => {
         try {
-          const fileKey = file.provider_metadata?.fileKey;
+          if (!file.stream) {
+            throw new Error("No file stream provided");
+          }
+
+          const chunks = [];
+          for await (const chunk of file.stream) {
+            chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+          }
+          const buffer = Buffer.concat(chunks);
+
+          const toUploadFile = new globalThis.File([buffer], file.name, {
+            type: file.mime,
+          });
+
+          const uploadedFile = await utapi.uploadFiles([toUploadFile]);
+          if (!uploadedFile[0].data) {
+            throw new Error("No uploadedFile data");
+          }
+          file.url = uploadedFile[0].data.ufsUrl;
+          file.hash = uploadedFile[0].data.key;
+        } catch (error: unknown) {
+          const errorMessage =
+            error instanceof Error ? error.message : "Unknown error";
+          console.error(`🚀 ~ uploadStream error: ${errorMessage}`);
+          return null;
+        }
+      },
+
+      delete: async (file: File): Promise<void | null> => {
+        try {
+          const fileKey = file.hash;
           if (!fileKey) {
             throw new Error("No file key provided for deletion");
           }
 
-          await utapi.deleteFiles([fileKey as string]);
+          await utapi.deleteFiles([fileKey]);
         } catch (error: unknown) {
           const errorMessage =
             error instanceof Error ? error.message : "Unknown error";
