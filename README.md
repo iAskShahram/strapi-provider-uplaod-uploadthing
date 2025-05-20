@@ -103,7 +103,6 @@ You're good to go now.
     - [Plugin Configuration Details](#plugin-configuration-details)
     - [Middleware Configuration Details (CSP)](#middleware-configuration-details-csp)
 - [Usage](#usage)
-- [Peer Dependencies](#peer-dependencies)
 - [Node.js Version Support](#nodejs-version-support)
 - [Contributing](#contributing)
 - [License](#license)
@@ -117,9 +116,9 @@ You're good to go now.
 
 ### Prerequisites
 
-- A Strapi project (v4 or later. This package has a peer dependency on `@strapi/strapi`: `^5.12.6`).
-- An account with [UploadThing](https://uploadthing.com).
-- Your `UPLOADTHING_TOKEN`.
+- A Strapi project (v4 or later)
+- An account with [UploadThing](https://uploadthing.com)
+- Your `UPLOADTHING_TOKEN`
 
 ### Installation
 
@@ -233,13 +232,6 @@ Once configured, Strapi will automatically use the UploadThing provider for all 
 
 -   **Uploading Files**: When you upload a file in Strapi, it will be sent to your UploadThing account.
 -   **Deleting Files**: When you delete a file from Strapi's Media Library, it will also be deleted from your UploadThing account.
-
-### Peer Dependencies
-
-This provider requires the following peer dependencies to be installed in your Strapi project:
--   `@strapi/strapi`: `^5.12.6` (as specified in `package.json`)
-
-Ensure your Strapi version is compatible.
 
 ### Node.js Version Support
 
